@@ -10,9 +10,9 @@ const response = await query(
 ),
 percentiles AS (
   SELECT
-    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 50) AS p50_worker_ttfb,
-    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 90) AS p90_worker_ttfb,
-    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 99) AS p99_worker_ttfb
+    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 50) AS client_ttfb_p50,
+    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 90) AS client_ttfb_p90,
+    MIN(worker_ttfb) FILTER (WHERE percentile_rank = 99) AS client_ttfb_p99
   FROM ttfb_ranked
 )
 SELECT
@@ -20,9 +20,9 @@ SELECT
   SUM(CASE WHEN NOT cache_miss THEN 1 ELSE 0 END) AS cache_hit_requests,
   SUM(egress_bytes) AS total_egress_bytes,
   COUNT(*) AS total_requests,
-  p50_worker_ttfb,
-  p90_worker_ttfb,
-  p99_worker_ttfb
+  client_ttfb_p50,
+  client_ttfb_p90,
+  client_ttfb_p99
 FROM
   retrieval_logs,
   percentiles;

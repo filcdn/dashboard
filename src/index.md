@@ -43,15 +43,17 @@ const cacheHitRate = PlatformStats.total_requests
 <h4>All time Stats</h4>
 
 <div class="grid grid-cols-4">
-    <h4 style="font-weight:normal;">Requests Served: ${PlatformStats.total_requests}</h4>
-    <h4 style="font-weight:normal;">Bytes Served: ${formatBytesIEC(PlatformStats.total_egress_bytes)}</h4>
-    <h4 style="font-weight:normal;">Cache Hit Rate: ${cacheHitRate}%</h4>
-    <h4 style="font-weight:normal;">
-        Client TTFB (ms): 
-        P50: ${PlatformStats.client_ttfb_p50.toFixed(2) ?? 0}, 
-        P90: ${PlatformStats.client_ttfb_p90.toFixed(2) ?? 0}, 
-        P99: ${PlatformStats.client_ttfb_p99.toFixed(2) ?? 0}
-    </h4>
+  <h4 class="font-normal">Requests Served: ${PlatformStats.total_requests}</h4>
+  <h4 class="font-normal">Bytes Served: ${formatBytesIEC(PlatformStats.total_egress_bytes)}</h4>
+  <h4 class="font-normal">Cache Hit Rate: ${cacheHitRate}%</h4>
+  <div class="flex flex-col items-center">
+    <h4 class="font-normal">Client TTFB (ms)</h4>
+    <div class="text-sm text-center">
+      <div>P50: ${PlatformStats.client_ttfb_p50?.toFixed(2) ?? 'N/A'}</div>
+      <div>P90: ${PlatformStats.client_ttfb_p90?.toFixed(2) ?? 'N/A'}</div>
+      <div>P99: ${PlatformStats.client_ttfb_p99?.toFixed(2) ?? 'N/A'}</div>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
