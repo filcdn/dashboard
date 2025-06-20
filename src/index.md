@@ -49,6 +49,7 @@ const cacheHitRate = PlatformStats.total_requests
   <div class="flex flex-col items-center">
     <h4 class="font-normal">Client TTFB (ms)</h4>
     <div class="text-sm text-center">
+      <div>P10: ${PlatformStats.client_ttfb_p10?.toFixed(2) ?? 'N/A'}</div>
       <div>P50: ${PlatformStats.client_ttfb_p50?.toFixed(2) ?? 'N/A'}</div>
       <div>P90: ${PlatformStats.client_ttfb_p90?.toFixed(2) ?? 'N/A'}</div>
       <div>P99: ${PlatformStats.client_ttfb_p99?.toFixed(2) ?? 'N/A'}</div>
